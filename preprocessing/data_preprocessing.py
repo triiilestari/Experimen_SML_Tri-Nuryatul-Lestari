@@ -76,7 +76,7 @@ class preprocessing():
             print(f"Error during process data tokenizer: {e}")
             return None
         # Save tokenizer for prediction
-        with open("tokenizer.pkl", "wb") as f:
+        with open("preprocessing/tokenizer.pkl", "wb") as f:
             pickle.dump(self.tokenizer, f)
         
         word2id = word_index
@@ -147,7 +147,7 @@ class preprocessing():
             Y_val = Y_preprocessed[int(training_samples * len(X_preprocessed)) : int(training_samples * len(X_preprocessed)) + (int(validation_samples * len(X_preprocessed)) + 1)]
             Y_test = Y_preprocessed[int(training_samples * len(X_preprocessed)) + (int(testing_samples * len(X_preprocessed)) + 1) : ]
             np.savez_compressed(
-                "{}.npz".format(name_dataset),
+                "{}.npz".format("preprocessing/"+name_dataset),
                 X_train=X_train,
                 Y_train=Y_train,
                 X_val=X_val,
