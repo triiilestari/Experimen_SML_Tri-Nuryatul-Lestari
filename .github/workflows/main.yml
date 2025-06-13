@@ -48,12 +48,28 @@ jobs:
         run: |
           conda activate smsml
           python preprocessing/data_preprocessing.py
+
+      # debug file hasil preprocessing
+      - name: Debug files
+        run: |
+          pwd
+          ls -R .
+          find . -type f | grep -E "\.npz$|\.pkl$"
           
       # move file result to processing
       - name: Move artifacts to preprocessing folder
         run: |
-          mv ner_dataset_split.npz preprocessing/
-          mv tokenizer.pkl preprocessing/
+          mv ner_dataset_split.npz preprocessing/ner_dataset_split.npz
+          mv tokenizer.pkl preprocessing/tokenizer.pkl
+
+      # debug file after move
+      - name: Debug files
+        run: |
+          pwd
+          cd preprocessing
+          pwd
+          ls -R .
+          find . -type f | grep -E "\.npz$|\.pkl$"
           
       # Commit & Push Updated Files
       - name: Save data split and tokenizer to repo
