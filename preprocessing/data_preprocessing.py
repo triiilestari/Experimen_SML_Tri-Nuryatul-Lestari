@@ -146,15 +146,15 @@ class preprocessing():
             Y_train = Y_preprocessed[: int(training_samples * len(X_preprocessed))]
             Y_val = Y_preprocessed[int(training_samples * len(X_preprocessed)) : int(training_samples * len(X_preprocessed)) + (int(validation_samples * len(X_preprocessed)) + 1)]
             Y_test = Y_preprocessed[int(training_samples * len(X_preprocessed)) + (int(testing_samples * len(X_preprocessed)) + 1) : ]
-            with open(f"{name_dataset}", "wb") as f:
-                np.savez_compressed(f,
-                    X_train=X_train,
-                    Y_train=Y_train,
-                    X_val=X_val,
-                    Y_val=Y_val,
-                    X_test=X_test,
-                    Y_test=Y_test
-                )
+            np.savez_compressed(
+                "clean data/{}".format(name_dataset),
+                X_train=X_train,
+                Y_train=Y_train,
+                X_val=X_val,
+                Y_val=Y_val,
+                X_test=X_test,
+                Y_test=Y_test
+            )
             print("Split Dataset completed successfully.")
         except Exception as e:
             print(f"Error during split dataset: {e}")
