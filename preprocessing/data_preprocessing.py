@@ -147,7 +147,7 @@ class preprocessing():
             Y_val = Y_preprocessed[int(training_samples * len(X_preprocessed)) : int(training_samples * len(X_preprocessed)) + (int(validation_samples * len(X_preprocessed)) + 1)]
             Y_test = Y_preprocessed[int(training_samples * len(X_preprocessed)) + (int(testing_samples * len(X_preprocessed)) + 1) : ]
             np.savez_compressed(
-                "clean data/{}".format(name_dataset),
+                "clean_data/{}".format(name_dataset),
                 X_train=X_train,
                 Y_train=Y_train,
                 X_val=X_val,
