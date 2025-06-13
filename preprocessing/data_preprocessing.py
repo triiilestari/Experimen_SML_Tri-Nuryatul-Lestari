@@ -7,6 +7,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from ast import literal_eval
 import pickle
+import os
 
 class preprocessing():
     def __init__(self):
@@ -146,6 +147,11 @@ class preprocessing():
             Y_train = Y_preprocessed[: int(training_samples * len(X_preprocessed))]
             Y_val = Y_preprocessed[int(training_samples * len(X_preprocessed)) : int(training_samples * len(X_preprocessed)) + (int(validation_samples * len(X_preprocessed)) + 1)]
             Y_test = Y_preprocessed[int(training_samples * len(X_preprocessed)) + (int(testing_samples * len(X_preprocessed)) + 1) : ]
+            if not os.path.exists("clean_data/"):
+                os.makedirs("clean_data/")
+                print(f"Folder clean_data telah dibuat.")
+            else:
+                print(f"Folder clean_data sudah ada.")
             np.savez_compressed(
                 "clean_data/{}".format(name_dataset),
                 X_train=X_train,
