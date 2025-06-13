@@ -6,6 +6,7 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from ast import literal_eval
+import pickle
 
 class preprocessing():
     def __init__(self):
@@ -74,7 +75,10 @@ class preprocessing():
         except Exception as e:
             print(f"Error during process data tokenizer: {e}")
             return None
-
+        # Save tokenizer for prediction
+        with open("tokenizer.pkl", "wb") as f:
+            pickle.dump(self.tokenizer, f)
+        
         word2id = word_index
         id2word = {}
         try:
@@ -173,5 +177,5 @@ class preprocessing():
 if __name__ == "__main__":
     prep = preprocessing()
     drive_id = "1OoaUzSoFI-ZwHMQ55vr3MBpuNDVtJ_CX"  # Change this to your CSV file path
-    name_dataset = "ner_dataset_split_check"
+    name_dataset = "ner_dataset_split"
     status = prep.main(drive_id, name_dataset)
