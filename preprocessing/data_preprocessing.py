@@ -147,7 +147,7 @@ class preprocessing():
             Y_val = Y_preprocessed[int(training_samples * len(X_preprocessed)) : int(training_samples * len(X_preprocessed)) + (int(validation_samples * len(X_preprocessed)) + 1)]
             Y_test = Y_preprocessed[int(training_samples * len(X_preprocessed)) + (int(testing_samples * len(X_preprocessed)) + 1) : ]
             np.savez_compressed(
-                "{}.npz".format(name_dataset),
+                "{}".format(name_dataset),
                 X_train=X_train,
                 Y_train=Y_train,
                 X_val=X_val,
@@ -177,5 +177,5 @@ class preprocessing():
 if __name__ == "__main__":
     prep = preprocessing()
     drive_id = "1OoaUzSoFI-ZwHMQ55vr3MBpuNDVtJ_CX"  # Change this to your CSV file path
-    name_dataset = "preprocessing/ner_dataset_split"
+    name_dataset = "preprocessing/ner_dataset_split.npz"
     status = prep.main(drive_id, name_dataset)
