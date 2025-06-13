@@ -59,13 +59,12 @@ jobs:
       # move file result to processing
       - name: Move artifacts to preprocessing folder
         run: |
-          mv ner_dataset_split.npz preprocessing/ner_dataset_split.npz
-          mv tokenizer.pkl preprocessing/tokenizer.pkl
+          mv ./ner_dataset_split.npz preprocessing/ner_dataset_split.npz
+          mv ./tokenizer.pkl preprocessing/tokenizer.pkl
 
       # debug file after move
       - name: Debug files
         run: |
-          pwd
           cd preprocessing
           pwd
           ls -R .
@@ -74,11 +73,14 @@ jobs:
       # Commit & Push Updated Files
       - name: Save data split and tokenizer to repo
         run: |
+          cd preprocessing
           git config --global user.name ${{ secrets.username }}
           git config --global user.email ${{ secrets.email }}
           git status
-          git add preprocessing/ner_dataset_split.npz 
-          git add preprocessing/tokenizer.pkl
+          git add ./ner_dataset_split.npz 
+          git add ./tokenizer.pkl
+          # git add preprocessing/ner_dataset_split.npz 
+          # git add preprocessing/tokenizer.pkl
           git commit -m "Auto-update dataset and tokenizer via GitHub Actions"
           git push origin main
   
