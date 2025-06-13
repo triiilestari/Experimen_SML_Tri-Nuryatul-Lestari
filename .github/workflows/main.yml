@@ -54,7 +54,7 @@ jobs:
         run: |
           git config --global user.name ${{ secrets.username }}
           git config --global user.email ${{ secrets.email }}
-          git add preprocessing/ner_dataset_split.npz preprocessing/tokenizer.pkl
+          git add preprocessing/ner_dataset_split.npz
           git commit -m "Auto-update dataset and tokenizer via GitHub Actions"
           git push origin main
   
