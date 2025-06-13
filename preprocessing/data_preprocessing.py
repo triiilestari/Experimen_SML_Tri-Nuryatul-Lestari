@@ -76,7 +76,7 @@ class preprocessing():
             print(f"Error during process data tokenizer: {e}")
             return None
         # Save tokenizer for prediction
-        with open("preprocessing/tokenizer.pkl", "wb") as f:
+        with open("tokenizer.pkl", "wb") as f:
             pickle.dump(self.tokenizer, f)
         
         word2id = word_index
@@ -177,5 +177,5 @@ class preprocessing():
 if __name__ == "__main__":
     prep = preprocessing()
     drive_id = "1OoaUzSoFI-ZwHMQ55vr3MBpuNDVtJ_CX"  # Change this to your CSV file path
-    name_dataset = "preprocessing/ner_dataset_split.npz"
+    name_dataset = "ner_dataset_split.npz"
     status = prep.main(drive_id, name_dataset)
